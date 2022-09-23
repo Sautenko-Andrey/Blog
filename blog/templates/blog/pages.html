@@ -18,10 +18,12 @@
 
 			<ul class="list-articles">
 	{% for article in articles %}
-		<br>
+				<li><div class="article-panel">
+			<p class="first from_left">{{article.time_update | date:'d.m.Y'}}</p>
+		</div>
 	    <li class="from_left"><h2 align="center">{{article.title}}</h2>
 	{% autoescape on %}
-	<h5 align="center">{{article.content|linebreaks|truncatewords:50}}</h5>
+	<h5 align="left">{{article.content|linebreaks|truncatewords:50}}</h5>
 	{% endautoescape %}
 			<div class="clear"></div>
 			<p align="center"><button type="button" class="btn btn-dark">

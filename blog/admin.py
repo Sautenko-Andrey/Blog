@@ -5,6 +5,7 @@ class PostsAdmin(admin.ModelAdmin):
     list_display = ('id','title','time_create','photo','is_published')
     list_display_links = ('id','title')
     search_fields = ('title','content')
+    prepopulated_fields = {'slug':('title',)}
 
 class MainPageTextAdmin(admin.ModelAdmin):
     list_display = ('title','content','picture_1','picture_2','picture_3')
