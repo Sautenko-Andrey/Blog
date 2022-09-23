@@ -1,0 +1,58 @@
+from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render
+from .models import *
+
+
+# menu = ['О сайте', 'Кнопка 1', 'Кнопка 2', 'Кнопка 3']
+
+
+def index(request):
+    content=MainPageText.objects.all()
+    return render(request, 'blog/index.html',
+                  {'title': 'Главная страница', 'content':content})
+
+
+def pages(request):
+    articles = Posts.objects.all()
+    return render(request, 'blog/pages.html', {'title': 'Статьи', 'articles': articles})
+
+
+def about(request):
+    return render(request, 'blog/about.html', {'title': 'О сайте'})
+
+
+def categories(request):
+    return HttpResponse('<h1>Статьи по категориям</h1>')
+
+
+def registration(request):
+    return render(request, 'blog/registration.html',{'title':'Регистрация'})
+
+
+def write_autor(request):
+    return render(request,'blog/write_to_author.html',{'title':'Связаться с автором'})
+
+def fotogallery(request):
+    return render(request, 'blog/foto.html',{'title':'Фотогаллерея'})
+
+
+def show_post(request, post_id):
+    return HttpResponse(f'Отображение статьи с id = {post_id}')
+
+def antalya_info(request):
+    return render(request, 'blog/antalya_info.html', {'title': 'О Анталии'})
+
+def kemer_info(request):
+    return render(request, 'blog/kemer_info.html', {'title': 'О Кемере'})
+
+def marmaris_info(request):
+    return render(request, 'blog/marmaris_info.html', {'title': 'О Мармарисе'})
+
+
+def fethie_info(request):
+    return render(request, 'blog/fethie_info.html', {'title': 'О Фетхие'})
+
+
+def pageNotFound(request, exception):
+    return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+

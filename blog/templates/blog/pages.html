@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="posts_style">
+	<br>
+	    <h4 align="center"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filter-right" viewBox="0 0 16 16">
+  <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z"/>
+		</svg><u>НЕДАВНИЕ СТАТЬИ</u><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
+  <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+</svg></h4>
+            <br>
+<div class="articles">
+	<div class="row">
+
+		<div class="col-xl-12 col-md-12 col-sm-12" align="center">
+
+			<ul class="list-articles">
+	{% for article in articles %}
+		<br>
+	    <li class="from_left"><h2 align="center">{{article.title}}</h2>
+	{% autoescape on %}
+	<h5 align="center">{{article.content|linebreaks|truncatewords:50}}</h5>
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p align="center"><button type="button" class="btn btn-dark">
+				<a class="white-oranje-style" href="{{ article.get_absolute_url }}">Читать</a></button></p>
+			</li>
+	{% endfor %}
+</ul>
+
+		</div>
+
+	</div>
+</div>
+
+</div>
+{% endblock %}
