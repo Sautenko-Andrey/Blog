@@ -510,6 +510,16 @@ div.main_page_style {
 
 }
 
+div.write_to_autor_style {
+    background-image: url("../../blog/images/write_to_autor.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 700px;
+    width: 100%;
+    color: black;
+
+}
+
 div.posts_style {
     background: #f0f0f0;
     background-repeat: no-repeat;

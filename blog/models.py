@@ -42,3 +42,18 @@ class SocialNet(models.Model):
         verbose_name_plural='Соцсети'
 
 
+class WriteToAutor(models.Model):
+    title = models.CharField(blank=False, max_length=50, db_index=True, verbose_name='Тема')
+    message = models.TextField(blank=False, verbose_name='Сообщение')
+    email=models.CharField(blank=False, max_length=50, verbose_name='Email')
+
+
+    def __str__(self):
+        return self.title
+
+
+    class Meta:
+        verbose_name='сообщение'
+        verbose_name_plural = 'Обратная связь'
+        ordering=['-id']
+

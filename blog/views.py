@@ -1,5 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+
+from .forms import *
 from .models import *
 
 
@@ -30,7 +32,18 @@ def registration(request):
 
 
 def write_autor(request):
-    return render(request,'blog/write_to_author.html',{'title':'Связаться с автором'})
+    if request.method=='POST':
+        form=WriteToAutorForm(request.POST)
+        if form.is_valid():
+            # print(form.cleaned_data)
+            try:
+                WriteToAutor.objects.create(**form.cleaned_data)
+                return redirect('home')
+            except:
+                form.add_error(None,'Ошибув отправки сообщения.')
+    else:
+        form=WriteToAutorForm
+    return render(request,'blog/write_to_author.html',{'form':form,'title':'Связаться с автором'})
 
 def fotogallery(request):
     return render(request, 'blog/foto.html',{'title':'Фотогаллерея'})
