@@ -24,8 +24,14 @@ class WriteToAutorAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
     search_fields = ('title', 'message', 'email')
 
+class AboutSiteAdmin(admin.ModelAdmin):
+    list_display = ('title','content')
+    list_display_links=('title',)
+    search_fields = ('title','content')
+
 
 admin.site.register(Posts, PostsAdmin)
 admin.site.register(MainPageText, MainPageTextAdmin)
 admin.site.register(SocialNet, SocialNetAdmin)
 admin.site.register(WriteToAutor,WriteToAutorAdmin)
+admin.site.register(AboutSite,AboutSiteAdmin)
