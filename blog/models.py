@@ -26,10 +26,16 @@ class Posts(models.Model):
 class AboutSite(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField(blank=True)
+    my_phone=models.CharField(blank=True,max_length=13)
+    my_mail=models.CharField(blank=True,max_length=30)
+    facebook_link=models.CharField(blank=True,max_length=100)
+    instagram_link=models.CharField(blank=True,max_length=100)
+    youtube_link=models.CharField(blank=True,max_length=100)
+    linkedn_link=models.CharField(blank=True,max_length=100)
 
     class Meta:
-        verbose_name='О сайте'
-        verbose_name_plural='О сайте'
+        verbose_name = 'Контент страницы <О блоге>'
+        verbose_name_plural = 'Контент страницы <О блоге>'
 
 
 class MainPageText(models.Model):
