@@ -136,5 +136,7 @@ class Sponsor(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Спонсорство'
         return context
+
+
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
