@@ -1,5 +1,33 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <p>info about Antalya</p>
+<div class="city_black_style">
+<div class="container p-3 mb-2 bg-light text-dark">
+    <br>
+    <div class="container">
+        <div class="row">
+            {% for info in antalya %}
+
+            <div class="col-xl-12 col-md-12 col-sm-12" align="left">
+                <h4 align="center"><b>{{info.title}}</b></h4>
+                <br>
+                <img class="img-article-left" src="{{info.picture_1.url}}">
+                <h5>{{info.content | linebreaks}}</h5>
+            </div>
+            <div class="col-xl-6 col-md-6 col-sm-6" align="center">
+                <img src="{{info.picture_2.url}}" class="card-img-top" alt="...">
+            </div>
+            <div class="col-xl-6 col-md-6 col-sm-6" align="center">
+                <img src="{{info.picture_3.url}}" class="card-img-top" alt="...">
+            </div>
+            <div class="col-xl-12 col-md-12 col-sm-12" align="left">
+                <br>
+                <h5>{{info.content_2part | linebreaks}}</h5>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+{% endfor %}
 {% endblock %}

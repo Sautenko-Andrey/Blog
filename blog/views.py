@@ -71,21 +71,70 @@ class ShowPost(DetailView):
         return context
 
 
-def antalya_info(request):
-    return render(request, 'blog/antalya_info.html', {'title': 'О Анталии'})
+class Antalya(ListView):
+    model = City
+    template_name = 'blog/antalya_info.html'
+    context_object_name = 'antalya'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Об Анталии'
+        return context
+
+    def get_queryset(self):
+        return City.objects.filter(pk=1)
 
 
-def kemer_info(request):
-    return render(request, 'blog/kemer_info.html', {'title': 'О Кемере'})
+class Kemer(ListView):
+    model = City
+    template_name = 'blog/kemer_info.html'
+    context_object_name = 'kemer'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'О Кемере'
+        return context
+
+    def get_queryset(self):
+        return City.objects.filter(pk=2)
 
 
-def marmaris_info(request):
-    return render(request, 'blog/marmaris_info.html', {'title': 'О Мармарисе'})
+class Marmaris(ListView):
+    model = City
+    template_name = 'blog/marmaris_info.html'
+    context_object_name = 'marmaris'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'О Мармарисе'
+        return context
+
+    def get_queryset(self):
+        return City.objects.filter(pk=3)
 
 
-def fethie_info(request):
-    return render(request, 'blog/fethie_info.html', {'title': 'О Фетхие'})
+class Fethie(ListView):
+    model = City
+    template_name = 'blog/fethie_info.html'
+    context_object_name = 'fethie'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'О Фетхие'
+        return context
+
+    def get_queryset(self):
+        return City.objects.filter(pk=4)
 
 
+class Sponsor(ListView):
+    model = Sponsorship
+    template_name = 'blog/sponsorship.html'
+    context_object_name = 'sponsor'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Спонсорство'
+        return context
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')

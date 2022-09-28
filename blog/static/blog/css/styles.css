@@ -23,7 +23,6 @@ img {
 }
 
 img.img-article-left {
-    max-width: 300px;
     height: auto;
     float: left;
     padding: 0 10px 10px 0;
@@ -538,6 +537,10 @@ div.posts_style {
     color: #CC0000;
 }
 
+.black_text {
+    color: #000000;
+}
+
 .white_text {
     color: #eeeeee;
 }
@@ -564,4 +567,18 @@ div.posts_style {
 
 .from_right {
     padding-right: 40px;
+}
+
+div.city_black_style {
+    background: black;
+}
+
+div.sponsorship_style {
+    background-image: url("../../blog/images/sponsor.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 700px;
+    width: 100%;
+    color: black;
+
 }

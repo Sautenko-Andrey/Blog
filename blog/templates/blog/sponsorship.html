@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="sponsorship_style">
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            {% for info in sponsor %}
+            <div class="col-xl-4 col-md-4 col-sm-4" align="left">
+                <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>{{info.title}}</b></h5>
+                        <p class="card-text"><h6>{{info.content}}</h6></p>
+                        <p>
+                            <a class="btn btn-warning" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                               aria-expanded="false" aria-controls="collapseExample">
+                                <b>РЕКВИЗИТЫ</b>
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body black_text">
+                                <div class="card" style="width: 14rem;">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><h5 align="center"><b>Приват-Банк</b></h5></li>
+                                        <li class="list-group-item"><h6 align="center">{{info.card_1}}</h6></li>
+                                        <li class="list-group-item"><h5 align="center"><b>Моно-Банк</b></h5></li>
+                                        <li class="list-group-item"><h6 align="center">{{info.card_2}}</h6></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 col-sm-4">
+            </div>
+            <div class="col-xl-4 col-md-4 col-sm-4" align="center">
+                <h5><i>Пожалуй, одно из самых приятных чувств - это осозновать, что твоя работа является твоим любимым делом.</i></h5>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

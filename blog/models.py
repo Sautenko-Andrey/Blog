@@ -72,3 +72,28 @@ class WriteToAutor(models.Model):
         verbose_name = 'сообщение'
         verbose_name_plural = 'Обратная связь'
         ordering = ['-id']
+
+
+class City(models.Model):
+    title=models.CharField(max_length=100)
+    content=models.TextField(blank=False)
+    content_2part = models.TextField(blank=False,null=True)
+    picture_1=models.ImageField(upload_to='photos/%Y/%m/%d/', null=True)
+    picture_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True)
+    picture_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True)
+    show_or_hide = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name='Рассказы о городах'
+        verbose_name_plural='Рассказы о городах'
+
+class Sponsorship(models.Model):
+    title=models.CharField(max_length=50)
+    content=models.TextField(max_length=255)
+    card_1=models.CharField(max_length=16)
+    card_2 = models.CharField(max_length=16)
+    card_3 = models.CharField(max_length=16)
+
+    class Meta:
+        verbose_name='Спонсорство'
+        verbose_name_plural='Спонсорство'

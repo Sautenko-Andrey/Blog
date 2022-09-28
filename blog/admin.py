@@ -31,9 +31,20 @@ class AboutSiteAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
     search_fields = ('title', 'content')
 
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('title','content','picture_1','picture_2','picture_3','show_or_hide')
+    list_display_links = ('title',)
+    search_fields = ('title',)
+
+class SponsorshipAdmin(admin.ModelAdmin):
+    list_display = ('title','content','card_1','card_2','card_3')
+    list_display_links = ('title',)
+    search_fields = ('title',)
 
 admin.site.register(Posts, PostsAdmin)
 admin.site.register(MainPageText, MainPageTextAdmin)
 admin.site.register(SocialNet, SocialNetAdmin)
 admin.site.register(WriteToAutor, WriteToAutorAdmin)
 admin.site.register(AboutSite, AboutSiteAdmin)
+admin.site.register(City,CityAdmin)
+admin.site.register(Sponsorship,SponsorshipAdmin)
