@@ -1,141 +1,155 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import *
 from .models import *
+from .utils import MutualContext
 
 
-class BlogHome(ListView):
+class BlogHome(MutualContext, ListView):
     model = MainPageText
     template_name = 'blog/index.html'
     context_object_name = 'content'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Главная страница'
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='Главная страница')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
 
-class Pages(ListView):
+class Pages(MutualContext, ListView):
+    paginate_by = 3
     model = Posts
     template_name = 'blog/pages.html'
     context_object_name = 'articles'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Статьи'
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='Статьи')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
 
-class AboutSiteContent(ListView):
+class AboutSiteContent(MutualContext, ListView):
     model = AboutSite
     template_name = 'blog/about.html'
     context_object_name = 'about'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'О сайте'
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='О блоге')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
-
-def registration(request):
-    return render(request, 'blog/registration.html', {'title': 'Регистрация'})
-
-
-class WriteAutor(CreateView):
-    form_class = WriteToAutorForm
-    template_name = 'blog/write_to_author.html'
+class Registration(MutualContext,CreateView):
+    form_class = RegistrationForm
+    template_name = 'blog/registration.html'
     success_url = reverse_lazy('home')
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Связаться с автором'
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='Регистрация')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
+
+# def registration(request):
+#     return render(request, 'blog/registration.html', {'title': 'Регистрация'})
+
+
+class WriteAutor(LoginRequiredMixin, MutualContext, CreateView):
+    form_class = WriteToAutorForm
+    template_name = 'blog/write_to_author.html'
+    success_url = reverse_lazy('home')
+    raise_exception = True
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='Связаться с автором')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
 
 def fotogallery(request):
     return render(request, 'blog/foto.html', {'title': 'Фотогаллерея'})
 
 
-class ShowPost(DetailView):
+class ShowPost(MutualContext, DetailView):
     model = Posts
     template_name = 'blog/post.html'
     slug_url_kwarg = 'post_slug'
     context_object_name = 'post'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = context['post']
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title=context_dict['post'])
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
 
-class Antalya(ListView):
+class Antalya(MutualContext, ListView):
     model = City
     template_name = 'blog/antalya_info.html'
     context_object_name = 'antalya'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Об Анталии'
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='О Анталии')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
     def get_queryset(self):
         return City.objects.filter(pk=1)
 
 
-class Kemer(ListView):
+class Kemer(MutualContext, ListView):
     model = City
     template_name = 'blog/kemer_info.html'
     context_object_name = 'kemer'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'О Кемере'
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='О Кемере')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
     def get_queryset(self):
         return City.objects.filter(pk=2)
 
 
-class Marmaris(ListView):
+class Marmaris(MutualContext, ListView):
     model = City
     template_name = 'blog/marmaris_info.html'
     context_object_name = 'marmaris'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'О Мармарисе'
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='О Мармарисе')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
     def get_queryset(self):
         return City.objects.filter(pk=3)
 
 
-class Fethie(ListView):
+class Fethie(MutualContext, ListView):
     model = City
     template_name = 'blog/fethie_info.html'
     context_object_name = 'fethie'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'О Фетхие'
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='О Фетхие')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
     def get_queryset(self):
         return City.objects.filter(pk=4)
 
 
-class Sponsor(ListView):
+class Sponsor(MutualContext, ListView):
     model = Sponsorship
     template_name = 'blog/sponsorship.html'
     context_object_name = 'sponsor'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Спонсорство'
-        return context
+        context_dict = super().get_context_data(**kwargs)
+        mutual_context_dict = self.get_user_context(title='Спонсорство')
+        return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
 
 def pageNotFound(request, exception):

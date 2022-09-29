@@ -2,19 +2,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static 'blog/images/main.png' %}">
 
-	<title>{{title}}</title>
+    <title>{{title}}</title>
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
           crossorigin="anonymous">
 
-	<link type="text/css" href="{% static 'blog/css/styles.css' %}" rel="stylesheet" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="{% static 'blog/css/styles.css' %}" rel="stylesheet"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
@@ -31,61 +31,78 @@
                     </a></li>
 
                     <nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-          <li></li>    <!-- Здесь можно вставить логотип для перехода на главную страницу -->
-      <h1 class="white_text"><a class='white-oranje-style' href="{% url 'home' %}"><b><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
-  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-</svg>I AM ANIMATOR<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
-  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-      </svg></b></a></h1>
-    <button class="navbar-toggler white-oranje-style" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-      <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><h5 align="center"><b><i>Меню</i></b></h5></h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'registration' %}"><h5 align="center"><b><i>Регистрация</i></b></h5></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'write_to_autor' %}"><h5 align="center"><b><i>Написать автору</i></b></h5></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}"><h5 align="center"><b><i>О блоге</i></b></h5></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'fotogallery' %}"><h5 align="center"><b><i>Фотогалерея</i></b></h5></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'sponsorship' %}"><h5 align="center"><b><i>Спонсорство</i></b></h5></a>
-          </li>
+                        <div class="container-fluid">
+                            <li></li>    <!-- Здесь можно вставить логотип для перехода на главную страницу -->
+                            <h1 class="white_text"><a class='white-oranje-style' href="{% url 'home' %}"><b>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                                     class="bi bi-dot" viewBox="0 0 16 16">
+                                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                </svg>
+                                I AM ANIMATOR
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                                     class="bi bi-dot" viewBox="0 0 16 16">
+                                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                </svg>
+                            </b></a></h1>
+                            <button class="navbar-toggler white-oranje-style" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                                 aria-labelledby="offcanvasDarkNavbarLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><h5 align="center"><b><i>Меню</i></b>
+                                    </h5></h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                        <li class="nav-item">
+                                            <a class="nav-link" aria-current="page" href="{% url 'registration' %}"><h5
+                                                    align="center"><b><i>Регистрация</i></b></h5></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'write_to_autor' %}"><h5 align="center"><b><i>Написать
+                                                автору</i></b></h5></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'about' %}"><h5 align="center"><b><i>О
+                                                блоге</i></b></h5></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'fotogallery' %}"><h5 align="center"><b><i>Фотогалерея</i></b>
+                                            </h5></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'sponsorship' %}"><h5 align="center"><b><i>Спонсорство</i></b>
+                                            </h5></a>
+                                        </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              #Соцсети
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="#">Instagram</a></li>
-              <li><a class="dropdown-item" href="#">Facebook</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">YouTube</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Что будем искать?" aria-label="Search">
-          <button class="btn btn-dark" type="submit">Поиск</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</nav>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" role="button"
+                                               data-bs-toggle="dropdown" aria-expanded="false">
+                                                #Соцсети
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li><a class="dropdown-item" href="#">Instagram</a></li>
+                                                <li><a class="dropdown-item" href="#">Facebook</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">YouTube</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <form class="d-flex" role="search">
+                                        <input class="form-control me-2" type="search" placeholder="Что будем искать?"
+                                               aria-label="Search">
+                                        <button class="btn btn-dark" type="submit">Поиск</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
 
                 </ul>
                 <div class="clear"></div>
@@ -105,7 +122,35 @@
                         <div class="content-text">
                             {% block content %}
                             {% endblock %}
+                            {% if page_obj.has_other_pages %}
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination pagination-lg justify-content-center pagination_background">
+                                    {% if page_obj.has_previous %}
+                                    <li class="page-item"><a
+                                            class="page-link pagination_text_style" href="?page={{page_obj.previous_page_number}}">&lt;</a>
+                                    </li>
+                                    {% endif %}
+                                    {% for p in paginator.page_range %}
+                                    {% if page_obj.number == p %}
+                                    <li class="page-item active" aria-current="page"><a
+                                            class="page-link pagination_text_style" href="?page={{p}}">{{p}}</a></li>
+                                    {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                                    <li class="page-item"><a class="page-link pagination_text_style" href="?page={{p}}">{{p}}</a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+
+
+                                    {% if page_obj.has_next %}
+                                    <li class="page-item"><a
+                                            class="page-link pagination_text_style" href="?page={{page_obj.next_page_number}}">&gt;</a>
+                                    </li>
+                                    {% endif %}
+
+                                </ul>
+                            </nav>
                         </div>
+
                         <!-- Конец блока контента -->
 
                     </td>
@@ -124,11 +169,11 @@
 </table>
 <!-- Конец footer'а и страницы -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-            integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
-            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
-            crossorigin="anonymous"></script>
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
 </body>
 
 </body>

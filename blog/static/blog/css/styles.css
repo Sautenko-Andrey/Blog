@@ -573,6 +573,20 @@ div.city_black_style {
     background: black;
 }
 
+.pagination_background {
+    background: #f0f0f0;
+}
+
+a.pagination_text_style {
+    color: black;
+}
+
+a.pagination_text_style:hover {
+    color: #FDA83D;
+}
+
+
+
 div.sponsorship_style {
     background-image: url("../../blog/images/sponsor.jpg");
     background-repeat: no-repeat;
@@ -582,3 +596,4 @@ div.sponsorship_style {
     color: black;
 
 }
+
