@@ -186,67 +186,6 @@ div.button {
     height: 100%;
 }
 
-.left-chapters {
-    margin: 0;
-    background: #eee;
-    border-right: 1px solid #ccc;
-    min-height: 100%;
-}
-
-.left-chapters ul {
-    width: 230px;
-    min-height: 100%;
-    margin: 0;
-    padding: 20px 10px 10px 20px;
-    list-style: none;
-    font-size: 20px;
-}
-
-.left-chapters ul li {
-    margin: 30px 0 0 0;
-    color: #999;
-}
-
-.left-chapters ul li.selected {
-    color: #0059b2;
-}
-
-.left-chapters ul li a {
-    color: #444;
-    text-decoration: none;
-}
-
-.left-chapters ul li a:hover {
-    color: #CC0000;
-}
-
-.left-chapters ul li.share {
-    margin: 60px 0 0 0;
-}
-
-.left-chapters ul li.share p {
-    margin: 30px 0 30px 0;
-}
-
-.left-chapters ul li.share a {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    margin: 0 20px 0 0;
-}
-
-.left-chapters ul li.share a.share-yt {
-    width: 100%;
-    height: 30px;
-    background: url('../images/share_yt.png') no-repeat 0 0
-}
-
-.left-chapters ul li.share a.share-yt:hover {
-    width: 100%;
-    height: 30px;
-    background: url('../images/share_yt.png') no-repeat 0 -30px
-}
-
 .content {
     padding: 0 0 0 0;
     width: 100%;
@@ -345,12 +284,12 @@ ul.content-table li a:hover {
 .content-text {
     margin: 0 0 0 0;
     color: #000;
-    font-size: 20px;
+    font-size: 15px;
     font-family: Yandex Sans Display Light;
 }
 
 .content-text h1 {
-    font-size: 32px;
+    font-size: 25px;
 }
 
 ul.lang-list {
@@ -453,16 +392,8 @@ ul.lang-list li a:hover {
     margin: 0;
 }
 
-.quote {
-    background: url('../images/blockquote.png') no-repeat 0 10px;
-    padding: 5px 5px 5px 70px;
-    font-family: Sans-serif, Arial, Tahoma;
-    font-style: italic;
-}
-
 #footer {
     box-sizing: border-box;
-
     background: #000000;
     padding: 12px;
     color: #aaa;
@@ -478,7 +409,7 @@ ul.lang-list li a:hover {
 }
 
 .form-input {
-    width: 300px;
+    width: 225px;
     font-size: 16px;
 }
 
@@ -528,6 +459,13 @@ div.posts_style {
     color: black;
 }
 
+.black-grey-style {
+    color: black;
+}
+
+.black-grey-style:hover {
+    color: #4f4f4f;
+}
 
 .black-red-style {
     color: black;
@@ -565,6 +503,10 @@ div.posts_style {
     padding-left: 40px;
 }
 
+.from_left_big {
+    padding-left: 300px;
+}
+
 .from_right {
     padding-right: 40px;
 }
@@ -592,6 +534,26 @@ div.sponsorship_style {
     background-repeat: no-repeat;
     background-size: cover;
     height: 700px;
+    width: 100%;
+    color: black;
+
+}
+
+div.authentication-style {
+    background-image: url("../../blog/images/authentication6.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 550px;
+    width: 100%;
+    color: black;
+
+}
+
+div.registration-style {
+    background-image: url("../../blog/images/registration.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 535px;
     width: 100%;
     color: black;
 

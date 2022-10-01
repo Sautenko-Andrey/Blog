@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
@@ -40,33 +40,34 @@ class WriteToAutorForm(forms.ModelForm):
 
 
 class RegistrationForm(UserCreationForm):
-
-    __USERNAME_LENGTH=(3,15)
-    __PASSWORD_LENGTH=(5,15)
+    __USERNAME_LENGTH = (3, 15)
+    __PASSWORD_LENGTH = (5, 15)
+    __FORBBIDEN_EMAIL = '.ru'
 
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     password2 = forms.CharField(label='Повторить пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    surname = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
 
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2')
+        fields = ('username', 'password1', 'password2', 'name', 'surname', 'email')
 
     def clean_username(self):
-        username=self.cleaned_data['username']
-        if len(username)>self.__USERNAME_LENGTH[1] or len(username)<self.__USERNAME_LENGTH[0]:
+        username = self.cleaned_data['username']
+        if len(username) > self.__USERNAME_LENGTH[1] or len(username) < self.__USERNAME_LENGTH[0]:
             raise ValidationError('Логин должен быть не менее, чем из 3 символов и не более 15 символов!')
         return username
 
-    def clean_password1(self):
-        password1=self.cleaned_data['password1']
-        if len(password1)>self.__PASSWORD_LENGTH[1] or len(password1)<self.__PASSWORD_LENGTH[0]:
-            raise ValidationError('Пароль должен быть длиннее 5 символов и короче 15.')
-        return password1
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if email[-3:] == self.__FORBBIDEN_EMAIL:
+            raise ValidationError("Вы используете запрещенную почту.")
+        return email
 
-    def clean_password2(self):
-        password2=self.cleaned_data['password2']
-        if password2!=self.password1:
-            raise ValidationError('Пароли не совпадают!Проверьте правильность ввода.')
-        return password2
 
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))

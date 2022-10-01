@@ -17,32 +17,23 @@
         </svg>
     </h4>
     <br>
-    <div class="articles">
+    <div class="container">
         <div class="row">
-
             <div class="col-xl-12 col-md-12 col-sm-12" align="center">
-
                 <ul class="list-articles">
                     {% for article in articles %}
                     <li>
                         <div class="article-panel">
-                            <p class="first from_left">{{article.time_update | date:'d.m.Y'}}</p>
+                            <p class="first from_left_big">{{article.time_update | date:'d.m.Y'}}</p>
                         </div>
-                    <li class="from_left"><h2 align="center">{{article.title}}</h2>
-                        {% autoescape on %}
-                        <h5 align="left">{{article.content|linebreaks|truncatewords:25}}</h5>
-                        {% endautoescape %}
+                    <li class="from_left_big"><h1 align="left"><a class="black-grey-style"
+                                                              href="{{ article.get_absolute_url }}">{{article.title}}</a>
+                    </h1>
                         <div class="clear"></div>
-                        <p align="center">
-                            <button type="button" class="btn btn-dark">
-                                <a class="white-oranje-style" href="{{ article.get_absolute_url }}">Читать</a></button>
-                        </p>
                     </li>
                     {% endfor %}
                 </ul>
-
             </div>
-
         </div>
     </div>
 </div>

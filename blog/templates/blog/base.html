@@ -58,10 +58,21 @@
                                 </div>
                                 <div class="offcanvas-body">
                                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                        {% if request.user.is_authenticated %}
+                                        <li class="nav-item">{{user.name}}<a class="nav-link" arria-current="page"
+                                                                             href="{% url 'logout' %}">
+                                            <h5 align="center"><b><i>Выйти</i></b></h5></a></li>
+                                        {% else %}
                                         <li class="nav-item">
                                             <a class="nav-link" aria-current="page" href="{% url 'registration' %}"><h5
                                                     align="center"><b><i>Регистрация</i></b></h5></a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" aria-current="page" href="{% url 'login' %}"><h5
+                                                    align="center"><b><i>Войти</i></b></h5></a>
+                                        </li>
+                                        {% endif %}
                                         <li class="nav-item">
                                             <a class="nav-link" href="{% url 'write_to_autor' %}"><h5 align="center"><b><i>Написать
                                                 автору</i></b></h5></a>
@@ -69,10 +80,6 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{% url 'about' %}"><h5 align="center"><b><i>О
                                                 блоге</i></b></h5></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'fotogallery' %}"><h5 align="center"><b><i>Фотогалерея</i></b>
-                                            </h5></a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{% url 'sponsorship' %}"><h5 align="center"><b><i>Спонсорство</i></b>
@@ -85,17 +92,24 @@
                                                 #Соцсети
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-dark">
-                                                <li><a class="dropdown-item" href="#">Instagram</a></li>
-                                                <li><a class="dropdown-item" href="#">Facebook</a></li>
+                                                <li><a class="dropdown-item"
+                                                       href="https://www.instagram.com/run_or_not_run/" target="_blank"
+                                                       rel="nofollow">Instagram</a></li>
+                                                <li><a class="dropdown-item"
+                                                       href="https://m.facebook.com/people/Andrey-Sautenko/100007390817108"
+                                                       target="_blank" rel="nofollow">Facebook</a></li>
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">YouTube</a></li>
+                                                <li><a class="dropdown-item"
+                                                       href="https://www.youtube.com/channel/UCHWPvP8ci_0PytNblRyDquQ"
+                                                       target="_blank" rel="nofollow">YouTube</a></li>
                                             </ul>
                                         </li>
                                     </ul>
-                                    <form class="d-flex" role="search">
-                                        <input class="form-control me-2" type="search" placeholder="Что будем искать?"
+                                    <form action="{% url 'pages' %}" method="get" class="d-flex" role="search">
+                                        <input name="q" class="form-control me-2" type="text"
+                                               placeholder="Что будем искать?"
                                                aria-label="Search">
                                         <button class="btn btn-dark" type="submit">Поиск</button>
                                     </form>
@@ -127,7 +141,8 @@
                                 <ul class="pagination pagination-lg justify-content-center pagination_background">
                                     {% if page_obj.has_previous %}
                                     <li class="page-item"><a
-                                            class="page-link pagination_text_style" href="?page={{page_obj.previous_page_number}}">&lt;</a>
+                                            class="page-link pagination_text_style"
+                                            href="?page={{page_obj.previous_page_number}}">&lt;</a>
                                     </li>
                                     {% endif %}
                                     {% for p in paginator.page_range %}
@@ -135,7 +150,8 @@
                                     <li class="page-item active" aria-current="page"><a
                                             class="page-link pagination_text_style" href="?page={{p}}">{{p}}</a></li>
                                     {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
-                                    <li class="page-item"><a class="page-link pagination_text_style" href="?page={{p}}">{{p}}</a></li>
+                                    <li class="page-item"><a class="page-link pagination_text_style" href="?page={{p}}">{{p}}</a>
+                                    </li>
                                     {% endif %}
                                     {% endfor %}
                                     {% endif %}
@@ -143,7 +159,8 @@
 
                                     {% if page_obj.has_next %}
                                     <li class="page-item"><a
-                                            class="page-link pagination_text_style" href="?page={{page_obj.next_page_number}}">&gt;</a>
+                                            class="page-link pagination_text_style"
+                                            href="?page={{page_obj.next_page_number}}">&gt;</a>
                                     </li>
                                     {% endif %}
 
