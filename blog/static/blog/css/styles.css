@@ -292,6 +292,10 @@ ul.content-table li a:hover {
     font-size: 25px;
 }
 
+.content-text h5 {
+    font-size: 17px;
+}
+
 ul.lang-list {
     list-style: none;
     margin: 0;
@@ -454,7 +458,7 @@ div.posts_style {
     background: #f0f0f0;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 800px;
+    height: 100%;
     width: 100%;
     color: black;
 }
@@ -506,6 +510,17 @@ div.posts_style {
 .from_left_big {
     padding-left: 300px;
 }
+.from_right_big {
+    padding-right: 200px;
+}
+
+.from_left_post {
+    padding-left: 160px;
+}
+
+.from_right_post {
+    padding-right: 150px;
+}
 
 .from_right {
     padding-right: 40px;
@@ -526,8 +541,6 @@ a.pagination_text_style {
 a.pagination_text_style:hover {
     color: #FDA83D;
 }
-
-
 
 div.sponsorship_style {
     background-image: url("../../blog/images/sponsor.jpg");

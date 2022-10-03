@@ -1,12 +1,24 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
+
 from .models import *
 
 
 class PostsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'time_create', 'photo', 'is_published')
+    list_display = ('id', 'title', 'time_create','get_html_photo', 'is_published')
     list_display_links = ('id', 'title')
     search_fields = ('title', 'content')
     prepopulated_fields = {'slug': ('title',)}
+    fields = ('title','slug','content','time_create','time_update','photo','get_html_photo','is_published')
+    readonly_fields = ('time_create','time_update','get_html_photo',)
+    save_on_top = True
+
+    def get_html_photo(self,object):
+        if object.photo:
+            return mark_safe(f'<img src="{object.photo.url}" width=50>')
+
+    get_html_photo.short_description='Картинка'
+
 
 
 class MainPageTextAdmin(admin.ModelAdmin):
@@ -32,7 +44,7 @@ class AboutSiteAdmin(admin.ModelAdmin):
     search_fields = ('title', 'content')
 
 class CityAdmin(admin.ModelAdmin):
-    list_display = ('title','content','picture_1','picture_2','picture_3','show_or_hide')
+    list_display = ('title','picture_1','picture_2','picture_3','show_or_hide')
     list_display_links = ('title',)
     search_fields = ('title',)
 
@@ -48,3 +60,6 @@ admin.site.register(WriteToAutor, WriteToAutorAdmin)
 admin.site.register(AboutSite, AboutSiteAdmin)
 admin.site.register(City,CityAdmin)
 admin.site.register(Sponsorship,SponsorshipAdmin)
+
+admin.site.site_title='Админ-панель блога'
+admin.site.site_header='Админ-панель блога'

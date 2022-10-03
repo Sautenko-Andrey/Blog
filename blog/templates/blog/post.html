@@ -1,10 +1,28 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<h1>{{post.title}}</h1>
+<div class="posts_style">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12" align="center">
+                <br>
+                <br>
+                <h1><b>{{post.title}}</b></h1>
+                <br>
+                {% if post.photo %}
+                <p class="from_left"><img src="{{post.photo.url}}"></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
-{% if post.photo %}
-<p><img class="img-article-left" src="{{post.photo.url}}"></p>
-{% endif %}
-{{post.content | linebreaks}}
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12" align="left">
+                <br>
+                <h5 class="from_left_post from_right_post">{{post.content | linebreaks}}</h5>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

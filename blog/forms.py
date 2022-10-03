@@ -4,12 +4,14 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 from .models import *
-
+from captcha .fields import CaptchaField
 
 class WriteToAutorForm(forms.ModelForm):
     __RELEVANT_LENGTH = (4, 30)
     __FORBIDDEN_EMAIL = '.ru'
     __MIN_MESSAGE_LENGTH = 10
+
+    Captcha=CaptchaField()
 
     widgets = {
         'title': forms.TextInput(attrs={'class': 'form-input'}),
@@ -43,6 +45,8 @@ class RegistrationForm(UserCreationForm):
     __USERNAME_LENGTH = (3, 15)
     __PASSWORD_LENGTH = (5, 15)
     __FORBBIDEN_EMAIL = '.ru'
+
+    Captcha = CaptchaField()
 
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
