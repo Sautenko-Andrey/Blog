@@ -75,3 +75,22 @@ class RegistrationForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+
+
+class CommentForm(forms.ModelForm):
+    # name=forms.CharField(label='Автор',widget=forms.TextInput(attrs={'class': 'form-input'}))
+    # body = forms.CharField(label='Комментарий', widget=forms.TextInput(attrs={'class': 'form-input'}))
+
+    widgets = {
+        # 'name': forms.TextInput(attrs={'class': 'form-input'}),
+        'body': forms.Textarea(attrs={'cols': 8, 'rows': 5}),
+    }
+    class Meta:
+        model = Comment
+        fields = ('body',)
+    # def __init__(self,*args,**kwargs):
+    #     super().__init__(*args,**kwargs)
+    #     for field in self.fields:
+    #         self.fields[field].widget.attrs['class']='form-control'
+    #     self.fields['text'].widget=Textarea
+

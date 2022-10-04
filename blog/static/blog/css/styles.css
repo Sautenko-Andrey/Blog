@@ -296,6 +296,7 @@ ul.content-table li a:hover {
     font-size: 17px;
 }
 
+
 ul.lang-list {
     list-style: none;
     margin: 0;
@@ -571,4 +572,7 @@ div.registration-style {
     color: black;
 
 }
-
+div.create-time-style {
+    font-size: 12px;
+    color: #3F4137;
+}

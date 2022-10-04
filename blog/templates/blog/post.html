@@ -21,6 +21,49 @@
             <div class="col-xl-12 col-md-12 col-sm-12" align="left">
                 <br>
                 <h5 class="from_left_post from_right_post">{{post.content | linebreaks}}</h5>
+                <hr>
+                <p>Комментарии ({{post.comment_posts.all.count}})</p>
+                <hr>
+            </div>
+            <div class="col-xl-6 col-md-6 col-sm-6" align="left">
+
+                {% if messages %}
+                <div class="alert.alert-success">
+                    {% for m in messages %}
+                    {{m}}
+                    {% endfor %}
+                    {% endif %}
+
+
+                    <ul>
+                        {% for item in post.comment_posts.all %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div style="width:100%;">
+                                    <div style="width: 50%; text-align: left; float: left;"><b>{{item.name}}</b></div>
+                                    <div class="create-time-style" style="width: 50%; text-align: right; float: left;">
+                                        {{item.created}}
+                                    </div>
+                                </div>
+
+                                <div style="width: 100%; text-align: left; float: left;"> {{item.body}}</div>
+                                <br>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-error">{{form.non_field_errors}}</div>
+                    {% for f in form %}
+                    <p><label class="form-label" for="{{f.id_for_label}}"><b>{{f.label}}:</b></label>{{f}}</p>
+                    <div class="form-error">{{f.errors}}</div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-dark white-oranje-style">Отправить</button>
+                </form>
+                <hr>
             </div>
         </div>
     </div>

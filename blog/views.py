@@ -4,7 +4,9 @@ from django.contrib.auth import logout, login
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import *
@@ -106,17 +108,46 @@ class WriteAutor(LoginRequiredMixin, MutualContext, CreateView):
         return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
 
-class ShowPost(MutualContext, DetailView):
+class ShowPost(FormMixin,MutualContext, DetailView):
     """Class for showing particular post"""
     model = Posts
     template_name = 'blog/post.html'
     slug_url_kwarg = 'post_slug'
     context_object_name = 'post'
+    form_class = CommentForm
+    success_url = reverse_lazy('pages')
+
+    def post(self,request,*args,**kwargs):
+        form=self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        self.object=form.save(commit=False)
+        self.object.post=self.get_object()
+        self.object.name = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context_dict = super().get_context_data(**kwargs)
         mutual_context_dict = self.get_user_context(title=context_dict['post'])
         return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
+
+
+
+class AddComment(View):
+    """Class for comments"""
+    def post(self,request,pk):
+        form=CommentForm(request.POST)
+        if form.is_valid():
+            form=form.save(commit=False)
+            form.post_id=pk
+            form.save()
+        return redirect('home')
+
 
 
 class Antalya(MutualContext, ListView):

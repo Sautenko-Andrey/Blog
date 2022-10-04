@@ -53,6 +53,12 @@ class SponsorshipAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
     search_fields = ('title',)
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name','post','body','created','active')
+    list_display_links = ('post','body')
+    search_fields = ('name','body')
+
+
 admin.site.register(Posts, PostsAdmin)
 admin.site.register(MainPageText, MainPageTextAdmin)
 admin.site.register(SocialNet, SocialNetAdmin)
@@ -60,6 +66,7 @@ admin.site.register(WriteToAutor, WriteToAutorAdmin)
 admin.site.register(AboutSite, AboutSiteAdmin)
 admin.site.register(City,CityAdmin)
 admin.site.register(Sponsorship,SponsorshipAdmin)
+admin.site.register(Comment,CommentAdmin)
 
 admin.site.site_title='Админ-панель блога'
 admin.site.site_header='Админ-панель блога'
