@@ -108,7 +108,7 @@ class WriteAutor(LoginRequiredMixin, MutualContext, CreateView):
         return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
 
 
-class ShowPost(FormMixin,MutualContext, DetailView):
+class ShowPost(FormMixin, MutualContext, DetailView):
     """Class for showing particular post"""
     model = Posts
     template_name = 'blog/post.html'
@@ -117,16 +117,16 @@ class ShowPost(FormMixin,MutualContext, DetailView):
     form_class = CommentForm
     success_url = reverse_lazy('pages')
 
-    def post(self,request,*args,**kwargs):
-        form=self.get_form()
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
         if form.is_valid():
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
 
     def form_valid(self, form):
-        self.object=form.save(commit=False)
-        self.object.post=self.get_object()
+        self.object = form.save(commit=False)
+        self.object.post = self.get_object()
         self.object.name = self.request.user
         self.object.save()
         return super().form_valid(form)
@@ -135,19 +135,6 @@ class ShowPost(FormMixin,MutualContext, DetailView):
         context_dict = super().get_context_data(**kwargs)
         mutual_context_dict = self.get_user_context(title=context_dict['post'])
         return dict(list(context_dict.items()) + list(mutual_context_dict.items()))
-
-
-
-class AddComment(View):
-    """Class for comments"""
-    def post(self,request,pk):
-        form=CommentForm(request.POST)
-        if form.is_valid():
-            form=form.save(commit=False)
-            form.post_id=pk
-            form.save()
-        return redirect('home')
-
 
 
 class Antalya(MutualContext, ListView):

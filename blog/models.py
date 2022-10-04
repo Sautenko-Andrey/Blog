@@ -24,18 +24,18 @@ class Posts(models.Model):
 
 
 class Comment(models.Model):
-    post=models.ForeignKey(Posts, related_name='comment_posts', on_delete=models.CASCADE,
-                           verbose_name='Статья',blank=True, null=True)
-    name=models.CharField(max_length=30,verbose_name='Автор')
-    body=models.TextField(max_length=255,verbose_name='Комментарий')
-    created=models.DateTimeField(auto_now_add=True,verbose_name='Дата создания')
-    updated = models.DateTimeField(auto_now=True,verbose_name='Дата изменения')
-    active = models.BooleanField(default=True,verbose_name='Видимость комментария')
+    post = models.ForeignKey(Posts, related_name='comment_posts', on_delete=models.CASCADE,
+                             verbose_name='Статья', blank=True, null=True)
+    name = models.CharField(max_length=30, verbose_name='Автор')
+    body = models.TextField(max_length=255, verbose_name='Комментарий')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    active = models.BooleanField(default=True, verbose_name='Видимость комментария')
 
     class Meta:
-        verbose_name='Комментарии'
-        verbose_name_plural='Комментарии'
-        ordering=('created',)
+        verbose_name = 'Комментарии'
+        verbose_name_plural = 'Комментарии'
+        ordering = ('created',)
 
 
 class AboutSite(models.Model):
