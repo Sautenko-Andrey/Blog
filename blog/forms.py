@@ -4,14 +4,15 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 from .models import *
-from captcha .fields import CaptchaField
+from captcha.fields import CaptchaField
+
 
 class WriteToAutorForm(forms.ModelForm):
     __RELEVANT_LENGTH = (4, 30)
     __FORBIDDEN_EMAIL = '.ru'
     __MIN_MESSAGE_LENGTH = 10
 
-    Captcha=CaptchaField()
+    Captcha = CaptchaField()
 
     widgets = {
         'title': forms.TextInput(attrs={'class': 'form-input'}),
@@ -78,19 +79,10 @@ class LoginForm(AuthenticationForm):
 
 
 class CommentForm(forms.ModelForm):
-    # name=forms.CharField(label='Автор',widget=forms.TextInput(attrs={'class': 'form-input'}))
-    # body = forms.CharField(label='Комментарий', widget=forms.TextInput(attrs={'class': 'form-input'}))
-
     widgets = {
-        # 'name': forms.TextInput(attrs={'class': 'form-input'}),
         'body': forms.Textarea(attrs={'cols': 8, 'rows': 5}),
     }
+
     class Meta:
         model = Comment
         fields = ('body',)
-    # def __init__(self,*args,**kwargs):
-    #     super().__init__(*args,**kwargs)
-    #     for field in self.fields:
-    #         self.fields[field].widget.attrs['class']='form-control'
-    #     self.fields['text'].widget=Textarea
-

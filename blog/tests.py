@@ -1,6 +1,7 @@
 from django.test import TestCase
+from django.urls import reverse
 from .models import *
-
+from .forms import *
 
 #                                      TESTING MODELS
 class PostsModelTest(TestCase):
@@ -118,3 +119,53 @@ class SponsorshipModelTest(TestCase):
         sponsor = Sponsorship.objects.get(id=1)
         max_length = sponsor._meta.get_field('title').max_length
         self.assertEqual(max_length, 50)
+
+
+#                                         FORMS
+
+class WriteToAutorFormTest(TestCase):
+
+    def test_fewer_title(self):
+        test_title = '123'
+        form = WriteToAutorForm()
+        form.title = test_title
+        self.assertFalse(form.is_valid())
+
+    def test_bigger_title(self):
+        test_title = '1' * 31
+        form = WriteToAutorForm()
+        form.title = test_title
+        self.assertFalse(form.is_valid())
+
+    def test_short_message(self):
+        test_message = '1' * 11
+        form = WriteToAutorForm()
+        form.message = test_message
+        self.assertFalse(form.is_valid())
+
+    def test_coorect_email(self):
+        test_email = '12345.ru'
+        form = WriteToAutorForm()
+        form.email = test_email
+        self.assertFalse(form.is_valid())
+
+
+class RegistrationFormTest(TestCase):
+
+    def test_short_username(self):
+        test_name = 'ab'
+        form = RegistrationForm()
+        form.username = test_name
+        self.assertFalse(form.is_valid())
+
+    def test_long_username(self):
+        test_name = 'ab' * 15
+        form = RegistrationForm()
+        form.username = test_name
+        self.assertFalse(form.is_valid())
+
+    def test_forbbiden_email(self):
+        test_email = 'someperson@mail.ru'
+        form = RegistrationForm()
+        form.email = test_email
+        self.assertFalse(form.is_valid())
