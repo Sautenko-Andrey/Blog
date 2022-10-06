@@ -19,16 +19,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-+a59j=d1)&_j-t81a$+3*#u0sn5glggn=ju*)pui5pudpezq=_'
-import os
+SECRET_KEY = 'django-insecure-+a59j=d1)&_j-t81a$+3*#u0sn5glggn=ju*)pui5pudpezq=_'
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '-+a59j=d1&_j-t81a$+3*#u0sn5glggn=ju*pui5pudpezq=_')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = True
 
-ALLOWED_HOSTS = ['mighty-springs-84463.herokuapp.com','127.0.0.1']
+
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -140,11 +138,3 @@ CACHES = {
     }
 }
 
-# Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
