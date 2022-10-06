@@ -22,13 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-+a59j=d1)&_j-t81a$+3*#u0sn5glggn=ju*)pui5pudpezq=_'
 import os
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-+a59j=d1)&_j-t81a$+3*#u0sn5glggn=ju*)pui5pudpezq=_')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '-+a59j=d1&_j-t81a$+3*#u0sn5glggn=ju*pui5pudpezq=_')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['mighty-springs-84463.herokuapp.com','127.0.0.1']
 
 # Application definition
 
